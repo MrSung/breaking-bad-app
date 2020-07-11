@@ -19,6 +19,7 @@
   ],
   "rules": {
     "prettier/prettier": "error",
-    "@typescript-eslint/space-before-function-paren": 0
+    "@typescript-eslint/space-before-function-paren": 0,
+    "@typescript-eslint/default-param-last": 0
   }
 }
