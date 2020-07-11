@@ -3,12 +3,17 @@
     "start": "snowpack dev",
     "build": "snowpack build",
     "test": "jest",
-    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
-    "lint": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\""
+    "eslint": "eslint --ext .js --ignore-path .gitignore .",
+    "eslint:fix": "eslint --fix --ext .js --ignore-path .gitignore .",
+    "tsc": "tsc"
   },
   "dependencies": {
     "react": "^16.13.0",
-    "react-dom": "^16.13.0"
+    "react-dom": "^16.13.0",
+    "react-redux": "^7.2.0",
+    "redux": "^4.0.5",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
     "@snowpack/app-scripts-react": "^1.4.0",
@@ -16,6 +21,18 @@
     "@testing-library/react": "^10.0.3",
     "@types/react": "^16.9.35",
     "@types/react-dom": "^16.9.8",
+    "@typescript-eslint/eslint-plugin": "3",
+    "@typescript-eslint/parser": "^3.6.0",
+    "eslint": "7",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-config-standard-with-typescript": "^18.0.2",
+    "eslint-plugin-import": "2",
+    "eslint-plugin-node": "11",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-promise": "4",
+    "eslint-plugin-react": "^7.20.3",
+    "eslint-plugin-standard": "4",
     "jest": "^25.4.0",
     "prettier": "^2.0.5",
     "snowpack": "^2.6.4",
