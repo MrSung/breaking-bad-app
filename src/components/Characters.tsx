@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useMemo, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import type { ICharacter } from '../api/types'
 import type { RootState } from '../store/index'
@@ -18,6 +18,10 @@ const Characters: React.FC<IPropsCharacters> = ({ characters }) => {
   const filteredCharacters = useSelector(
     (state: RootState) => state.filteredCharacters,
   )
+  const shuffledAndPickedCharacters = useMemo(
+    () => shuffle(characters).slice(0, 6),
+    [characters],
+  )
 
   useEffect(() => {
     if (inputText !== '') {
@@ -28,22 +32,28 @@ const Characters: React.FC<IPropsCharacters> = ({ characters }) => {
       )
       return
     }
-    setCharactersToShow(shuffle(characters).slice(0, 6))
-  }, [characters, inputText])
+    setCharactersToShow(shuffledAndPickedCharacters)
+    console.log('charactersToShow', charactersToShow)
+    console.log('filteredCharacters', filteredCharacters)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [characters, shuffledAndPickedCharacters, inputText, dispatch])
 
   return (
     <div>
       <h2>A list of some random characters</h2>
-      <label htmlFor="charName">
-        <input
-          type="text"
-          id="charName"
-          placeholder="Search character name"
-          onKeyUp={(event) => {
-            setInputText(event.currentTarget.value)
-          }}
-        />
-      </label>
+      <form autoComplete="off">
+        <label htmlFor="charName">
+          <input
+            type="text"
+            id="charName"
+            placeholder="Search character name"
+            onChange={(event) => {
+              console.log(event.currentTarget.value)
+              setInputText(event.currentTarget.value)
+            }}
+          />
+        </label>
+      </form>
       <ul
         style={{
           display: 'flex',

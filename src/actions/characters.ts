@@ -20,7 +20,7 @@ function acFilterCharacters(
 export function handleFilterCharacters(
   characters: ICharacter[],
   searchText: string | undefined,
-  callback: VoidFunction | undefined,
+  callback?: VoidFunction | undefined,
 ) {
   return (dispatch: Dispatch<Action>) => {
     if (typeof searchText === 'undefined') return
