@@ -1,15 +1,36 @@
-import React from 'react'
-import { useDispatch } from 'react-redux'
-import type { TypeCharacter } from '../api/types'
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import type { ICharacter } from '../api/types'
+import type { RootState } from '../store/index'
 import shuffle from '../utils/shuffle'
 import { handleFilterCharacters } from '../actions/characters'
 
 interface IPropsCharacters {
-  characters: TypeCharacter[]
+  characters: ICharacter[]
 }
 
 const Characters: React.FC<IPropsCharacters> = ({ characters }) => {
+  const [charactersToShow, setCharactersToShow] = useState<null | ICharacter[]>(
+    null,
+  )
+  const [inputText, setInputText] = useState<undefined | string>('')
   const dispatch = useDispatch()
+  const filteredCharacters = useSelector(
+    (state: RootState) => state.filteredCharacters,
+  )
+
+  useEffect(() => {
+    if (inputText !== '') {
+      dispatch(
+        handleFilterCharacters(characters, inputText, () => {
+          setCharactersToShow(filteredCharacters)
+        }),
+      )
+      return
+    }
+    setCharactersToShow(shuffle(characters).slice(0, 6))
+  }, [characters, inputText])
+
   return (
     <div>
       <h2>A list of some random characters</h2>
@@ -19,7 +40,7 @@ const Characters: React.FC<IPropsCharacters> = ({ characters }) => {
           id="charName"
           placeholder="Search character name"
           onKeyUp={(event) => {
-            dispatch(handleFilterCharacters(event.currentTarget.value))
+            setInputText(event.currentTarget.value)
           }}
         />
       </label>
@@ -32,9 +53,8 @@ const Characters: React.FC<IPropsCharacters> = ({ characters }) => {
           padding: 0,
         }}
       >
-        {shuffle(characters)
-          .slice(0, 6)
-          .map(
+        {Array.isArray(charactersToShow) &&
+          charactersToShow.map(
             ({
               char_id: charId,
               img,

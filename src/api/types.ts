@@ -1,4 +1,4 @@
-export interface TypeCharacter {
+export interface ICharacter {
   char_id: number
   name: string
   birthday: string

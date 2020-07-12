@@ -1,15 +1,15 @@
 import type { Dispatch, Action } from 'redux'
-import type { TypeCharacter } from '../api/types'
+import type { ICharacter } from '../api/types'
 import breakingBadAPI from '../api/breakingBadAPI'
 
 export const RECEIVE_DATA = 'RECEIVE_DATA'
 
-interface ACReceiveData {
+export interface ACReceiveData {
   type: typeof RECEIVE_DATA
-  characters: TypeCharacter[]
+  characters: ICharacter[]
 }
 
-function acReceiveData(characters: TypeCharacter[]): ACReceiveData {
+function acReceiveData(characters: ICharacter[]): ACReceiveData {
   return {
     type: RECEIVE_DATA,
     characters,

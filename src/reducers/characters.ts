@@ -1,25 +1,23 @@
-import type { TypeCharacter } from '../api/types'
-import { RECEIVE_DATA } from '../actions/shared'
-import { FILTER_CHARACTERS } from '../actions/characters'
+import type { ICharacter } from '../api/types'
+import { RECEIVE_DATA, ACReceiveData } from '../actions/shared'
+import { FILTER_CHARACTERS, ACFilterCharacters } from '../actions/characters'
 
-interface TypeAction {
-  type: typeof RECEIVE_DATA | typeof FILTER_CHARACTERS
-  characters: TypeCharacter[]
-  searchText: string
-}
-
-export default function characters(
-  state = [],
-  action: TypeAction,
-): TypeCharacter[] {
+export function characters(state = [], action: ACReceiveData): ICharacter[] {
   switch (action.type) {
     case RECEIVE_DATA:
       return action.characters
+    default:
+      return state
+  }
+}
+
+export function filteredCharacters(
+  state = [],
+  action: ACFilterCharacters,
+): ICharacter[] {
+  switch (action.type) {
     case FILTER_CHARACTERS:
-      return state.filter((character: TypeCharacter) => {
-        if (action.searchText === '') return action.characters
-        return character.name.toLowerCase().startsWith(action.searchText)
-      })
+      return action.filteredCharacters
     default:
       return state
   }
