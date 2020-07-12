@@ -10,9 +10,6 @@ interface IPropsCharacters {
 }
 
 const Characters: React.FC<IPropsCharacters> = ({ characters }) => {
-  const [charactersToShow, setCharactersToShow] = useState<null | ICharacter[]>(
-    null,
-  )
   const [inputText, setInputText] = useState<undefined | string>('')
   const dispatch = useDispatch()
   const filteredCharacters = useSelector(
@@ -22,21 +19,14 @@ const Characters: React.FC<IPropsCharacters> = ({ characters }) => {
     () => shuffle(characters).slice(0, 6),
     [characters],
   )
+  const charactersToShow = useMemo(() => {
+    return inputText === '' ? shuffledAndPickedCharacters : filteredCharacters
+  }, [inputText, shuffledAndPickedCharacters, filteredCharacters])
 
   useEffect(() => {
-    if (inputText !== '') {
-      dispatch(
-        handleFilterCharacters(characters, inputText, () => {
-          setCharactersToShow(filteredCharacters)
-        }),
-      )
-      return
-    }
-    setCharactersToShow(shuffledAndPickedCharacters)
-    console.log('charactersToShow', charactersToShow)
-    console.log('filteredCharacters', filteredCharacters)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [characters, shuffledAndPickedCharacters, inputText, dispatch])
+    if (inputText === '') return
+    dispatch(handleFilterCharacters(characters, inputText))
+  }, [characters, inputText, dispatch])
 
   return (
     <div>
@@ -48,7 +38,6 @@ const Characters: React.FC<IPropsCharacters> = ({ characters }) => {
             id="charName"
             placeholder="Search character name"
             onChange={(event) => {
-              console.log(event.currentTarget.value)
               setInputText(event.currentTarget.value)
             }}
           />
@@ -63,48 +52,47 @@ const Characters: React.FC<IPropsCharacters> = ({ characters }) => {
           padding: 0,
         }}
       >
-        {Array.isArray(charactersToShow) &&
-          charactersToShow.map(
-            ({
-              char_id: charId,
-              img,
-              name,
-              nickname,
-              occupation,
-              appearance,
-              status,
-            }) => (
-              <li key={charId} style={{ width: '250px', marginBottom: '18px' }}>
-                <fieldset style={{ height: '100%', width: '100%' }}>
-                  <figure style={{ margin: 0, position: 'relative' }}>
-                    <img
-                      src={img}
-                      alt={name}
-                      height="300"
-                      style={{
-                        objectFit: 'cover',
-                        overflow: 'hidden',
-                        width: '100%',
-                      }}
-                    />
-                    <figcaption>
-                      <h3 style={{ marginBottom: '6px' }}>{name}</h3>
-                      <small>{nickname}</small>
-                    </figcaption>
-                  </figure>
-                  <hr />
-                  <dl>
-                    <dt>Occupation</dt>
-                    <dd>{occupation}</dd>
-                    <dt>Seasons</dt>
-                    <dd>{appearance.join(',')}</dd>
-                    <dt>Status</dt>
-                    <dd>{status}</dd>
-                  </dl>
-                </fieldset>
-              </li>
-            ),
-          )}
+        {charactersToShow.map(
+          ({
+            char_id: charId,
+            img,
+            name,
+            nickname,
+            occupation,
+            appearance,
+            status,
+          }) => (
+            <li key={charId} style={{ width: '250px', marginBottom: '18px' }}>
+              <fieldset style={{ height: '100%', width: '100%' }}>
+                <figure style={{ margin: 0, position: 'relative' }}>
+                  <img
+                    src={img}
+                    alt={name}
+                    height="300"
+                    style={{
+                      objectFit: 'cover',
+                      overflow: 'hidden',
+                      width: '100%',
+                    }}
+                  />
+                  <figcaption>
+                    <h3 style={{ marginBottom: '6px' }}>{name}</h3>
+                    <small>{nickname}</small>
+                  </figcaption>
+                </figure>
+                <hr />
+                <dl>
+                  <dt>Occupation</dt>
+                  <dd>{occupation}</dd>
+                  <dt>Seasons</dt>
+                  <dd>{appearance.join(',')}</dd>
+                  <dt>Status</dt>
+                  <dd>{status}</dd>
+                </dl>
+              </fieldset>
+            </li>
+          ),
+        )}
       </ul>
     </div>
   )
