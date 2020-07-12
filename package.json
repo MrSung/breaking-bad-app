@@ -8,6 +8,9 @@
     "eslint:fix": "eslint --fix --ext .js --ignore-path .gitignore .",
     "tsc": "tsc"
   },
+  "engines": {
+    "node": "12.18.2"
+  },
   "dependencies": {
     "lodash.clonedeep": "^4.5.0",
     "react": "^16.13.0",
