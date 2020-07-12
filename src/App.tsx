@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import type { RootState } from './store'
 import { handleInitialData } from './actions/shared'
 import Characters from './components/Characters'
 
 const App: React.FC = () => {
   const dispatch = useDispatch()
+  const characters = useSelector((state: RootState) => state.characters)
 
   useEffect(() => {
     dispatch(handleInitialData())
@@ -12,7 +14,7 @@ const App: React.FC = () => {
 
   return (
     <div>
-      <Characters />
+      <Characters characters={characters} />
     </div>
   )
 }

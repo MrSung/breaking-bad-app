@@ -2,12 +2,14 @@
   "scripts": {
     "start": "snowpack dev",
     "build": "snowpack build",
+    "clean": "rm -rf ./node_modules/.cache build",
     "test": "jest",
     "eslint": "eslint --ext .js --ignore-path .gitignore .",
     "eslint:fix": "eslint --fix --ext .js --ignore-path .gitignore .",
     "tsc": "tsc"
   },
   "dependencies": {
+    "lodash.clonedeep": "^4.5.0",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
     "react-redux": "^7.2.0",
@@ -19,6 +21,7 @@
     "@snowpack/app-scripts-react": "^1.4.0",
     "@testing-library/jest-dom": "^5.5.0",
     "@testing-library/react": "^10.0.3",
+    "@types/lodash.clonedeep": "^4.5.6",
     "@types/react": "^16.9.35",
     "@types/react-dom": "^16.9.8",
     "@types/react-redux": "^7.1.9",

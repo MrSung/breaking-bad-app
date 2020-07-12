@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 import characters from './characters'
 
-const combinedReducers = combineReducers({ characters })
+const rootReducer = combineReducers({ characters })
 
-export default combinedReducers
+export default rootReducer

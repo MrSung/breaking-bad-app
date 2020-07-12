@@ -19,7 +19,9 @@
   ],
   "rules": {
     "prettier/prettier": "error",
+    "react/prop-types": 0,
     "@typescript-eslint/space-before-function-paren": 0,
-    "@typescript-eslint/default-param-last": 0
+    "@typescript-eslint/default-param-last": 0,
+    "@typescript-eslint/indent": 0
   }
 }
