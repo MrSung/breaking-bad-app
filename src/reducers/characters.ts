@@ -1,6 +1,6 @@
+import type { TypeCharacter } from '../api/types'
 import { RECEIVE_DATA } from '../actions/shared'
 import { FILTER_CHARACTERS } from '../actions/characters'
-import type { TypeCharacter } from '../api/types'
 
 interface TypeAction {
   type: typeof RECEIVE_DATA | typeof FILTER_CHARACTERS

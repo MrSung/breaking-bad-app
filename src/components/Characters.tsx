@@ -1,11 +1,11 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import type { TypeCharacters } from '../api/types'
+import type { TypeCharacter } from '../api/types'
 import shuffle from '../utils/shuffle'
 import { handleFilterCharacters } from '../actions/characters'
 
 interface IPropsCharacters {
-  characters: TypeCharacters
+  characters: TypeCharacter[]
 }
 
 const Characters: React.FC<IPropsCharacters> = ({ characters }) => {
