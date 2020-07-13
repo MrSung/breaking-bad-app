@@ -24,7 +24,7 @@ const Characters: React.FC<IPropsCharacters> = ({ characters }) => {
   }, [inputText, shuffledAndPickedCharacters, filteredCharacters])
 
   useEffect(() => {
-    if (inputText === '') return
+    if (typeof inputText === 'undefined' || inputText === '') return
     dispatch(handleFilterCharacters(characters, inputText))
   }, [characters, inputText, dispatch])
 

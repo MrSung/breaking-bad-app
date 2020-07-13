@@ -1,6 +1,23 @@
 import { combineReducers } from 'redux'
-import { characters, filteredCharacters } from './characters'
+import {
+  RECEIVE_DATA,
+  IAllFetchedData,
+  IACReceiveData,
+} from '../actions/shared'
+import { filteredCharacters } from './characters'
 
-const rootReducer = combineReducers({ characters, filteredCharacters })
+export function allFetchedData(
+  state = { characters: [] },
+  action: IACReceiveData,
+): IAllFetchedData {
+  switch (action.type) {
+    case RECEIVE_DATA:
+      return action.allFetchedData
+    default:
+      return state
+  }
+}
+
+const rootReducer = combineReducers({ allFetchedData, filteredCharacters })
 
 export default rootReducer

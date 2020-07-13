@@ -3,14 +3,14 @@ import type { ICharacter } from '../api/types'
 
 export const FILTER_CHARACTERS = 'FILTER_CHARACTERS'
 
-export interface ACFilterCharacters {
+export interface IACFilterCharacters {
   type: typeof FILTER_CHARACTERS
   filteredCharacters: ICharacter[]
 }
 
 function acFilterCharacters(
   filteredCharacters: ICharacter[],
-): ACFilterCharacters {
+): IACFilterCharacters {
   return {
     type: FILTER_CHARACTERS,
     filteredCharacters,
@@ -19,8 +19,8 @@ function acFilterCharacters(
 
 export function handleFilterCharacters(
   characters: ICharacter[],
-  searchText: string | undefined,
-  callback?: VoidFunction | undefined,
+  searchText: string,
+  callback?: VoidFunction,
 ) {
   return (dispatch: Dispatch<Action>) => {
     if (typeof searchText === 'undefined') return

@@ -4,21 +4,25 @@ import breakingBadAPI from '../api/breakingBadAPI'
 
 export const RECEIVE_DATA = 'RECEIVE_DATA'
 
-export interface ACReceiveData {
-  type: typeof RECEIVE_DATA
+export interface IAllFetchedData {
   characters: ICharacter[]
 }
 
-function acReceiveData(characters: ICharacter[]): ACReceiveData {
+export interface IACReceiveData {
+  type: typeof RECEIVE_DATA
+  allFetchedData: IAllFetchedData
+}
+
+function acReceiveData(allFetchedData: IAllFetchedData): IACReceiveData {
   return {
     type: RECEIVE_DATA,
-    characters,
+    allFetchedData,
   }
 }
 
 export function handleInitialData() {
   return async (dispatch: Dispatch<Action>) => {
     const [characters] = await Promise.all([breakingBadAPI.fetchCharacters()])
-    dispatch(acReceiveData(characters))
+    dispatch(acReceiveData({ characters }))
   }
 }

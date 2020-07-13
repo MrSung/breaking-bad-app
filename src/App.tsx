@@ -6,7 +6,7 @@ import Characters from './components/Characters'
 
 const App: React.FC = () => {
   const dispatch = useDispatch()
-  const characters = useSelector((state: RootState) => state.characters)
+  const { characters } = useSelector((state: RootState) => state.allFetchedData)
 
   useEffect(() => {
     dispatch(handleInitialData())
