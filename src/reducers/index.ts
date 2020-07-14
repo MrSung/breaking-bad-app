@@ -7,7 +7,7 @@ import {
 import { filteredCharacters } from './characters'
 
 export function allFetchedData(
-  state = { characters: [] },
+  state = { characters: [], episodes: [], quotes: [], deaths: [] },
   action: IACReceiveData,
 ): IAllFetchedData {
   switch (action.type) {
