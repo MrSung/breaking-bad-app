@@ -62,34 +62,39 @@ const Characters: React.FC<IPropsCharacters> = ({ characters }) => {
             appearance,
             status,
           }) => (
-            <li key={charId} style={{ width: '250px', marginBottom: '18px' }}>
-              <fieldset style={{ height: '100%', width: '100%' }}>
-                <figure style={{ margin: 0, position: 'relative' }}>
-                  <img
-                    src={img}
-                    alt={name}
-                    height="300"
-                    style={{
-                      objectFit: 'cover',
-                      overflow: 'hidden',
-                      width: '100%',
-                    }}
-                  />
-                  <figcaption>
-                    <h3 style={{ marginBottom: '6px' }}>{name}</h3>
-                    <small>{nickname}</small>
-                  </figcaption>
-                </figure>
-                <hr />
-                <dl>
-                  <dt>Occupation</dt>
-                  <dd>{occupation}</dd>
-                  <dt>Seasons</dt>
-                  <dd>{appearance.join(',')}</dd>
-                  <dt>Status</dt>
-                  <dd>{status}</dd>
-                </dl>
-              </fieldset>
+            <li
+              key={charId}
+              style={{
+                width: '250px',
+                marginBottom: '18px',
+                border: '1px solid white',
+              }}
+            >
+              <figure style={{ margin: 0, position: 'relative' }}>
+                <img
+                  src={img}
+                  alt={name}
+                  height="300"
+                  style={{
+                    objectFit: 'cover',
+                    overflow: 'hidden',
+                    width: '100%',
+                  }}
+                />
+                <figcaption style={{ padding: '0 1em 1em' }}>
+                  <h3 style={{ marginBottom: '6px' }}>{name}</h3>
+                  <small>{nickname}</small>
+                </figcaption>
+              </figure>
+              <hr />
+              <dl style={{ padding: '0 1em' }}>
+                <dt>Occupation</dt>
+                <dd>{occupation}</dd>
+                <dt>Seasons</dt>
+                <dd>{appearance.join(',')}</dd>
+                <dt>Status</dt>
+                <dd>{status}</dd>
+              </dl>
             </li>
           ),
         )}

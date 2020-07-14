@@ -12,7 +12,8 @@ const Episodes: React.FC<IPropsEpisodes> = ({ episodes }) => {
   ])
 
   return (
-    <div>
+    <div style={{ marginTop: '3em' }}>
+      <h2>A list of some episodes</h2>
       {episodesToShow.map(
         ({
           episode_id: episodeId,
@@ -23,31 +24,34 @@ const Episodes: React.FC<IPropsEpisodes> = ({ episodes }) => {
           episode,
           series,
         }) => (
-          <section key={episodeId} style={{ marginTop: '1.5em' }}>
+          <section
+            key={episodeId}
+            style={{ marginTop: '1.5em', borderBottom: '1px dotted white' }}
+          >
             <table>
               <tbody>
                 <tr>
-                  <td>title</td>
+                  <td style={{ minWidth: '120px' }}>title</td>
                   <td>{title}</td>
                 </tr>
                 <tr>
-                  <td>season</td>
+                  <td style={{ minWidth: '120px' }}>season</td>
                   <td>{season}</td>
                 </tr>
                 <tr>
-                  <td>airDate</td>
+                  <td style={{ minWidth: '120px' }}>airDate</td>
                   <td>{airDate}</td>
                 </tr>
                 <tr>
-                  <td>characters</td>
+                  <td style={{ minWidth: '120px' }}>characters</td>
                   <td>{characters.join(', ')}</td>
                 </tr>
                 <tr>
-                  <td>episode</td>
+                  <td style={{ minWidth: '120px' }}>episode</td>
                   <td>{episode}</td>
                 </tr>
                 <tr>
-                  <td>series</td>
+                  <td style={{ minWidth: '120px' }}>series</td>
                   <td>{series}</td>
                 </tr>
               </tbody>

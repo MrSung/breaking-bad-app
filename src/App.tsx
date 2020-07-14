@@ -4,10 +4,11 @@ import type { RootState } from './store'
 import { handleInitialData } from './actions/shared'
 import Characters from './components/Characters'
 import Episodes from './components/Episodes'
+import Quotes from './components/Quotes'
 
 const App: React.FC = () => {
   const dispatch = useDispatch()
-  const { characters, episodes } = useSelector(
+  const { characters, episodes, quotes } = useSelector(
     (state: RootState) => state.allFetchedData,
   )
 
@@ -16,9 +17,10 @@ const App: React.FC = () => {
   }, [dispatch])
 
   return (
-    <div>
+    <div style={{ padding: '2em 0 5em' }}>
       <Characters characters={characters} />
       <Episodes episodes={episodes} />
+      <Quotes quotes={quotes} />
     </div>
   )
 }
