@@ -16,7 +16,7 @@ const Characters: React.FC<IPropsCharacters> = ({ characters }) => {
     (state: RootState) => state.filteredCharacters,
   )
   const shuffledAndPickedCharacters = useMemo(
-    () => shuffle(characters).slice(0, 6),
+    () => shuffle(characters).slice(0, 3),
     [characters],
   )
   const charactersToShow = useMemo(() => {
