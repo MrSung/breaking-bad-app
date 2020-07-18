@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import InputSearch from './parts/InputSearch'
 import type { IEpisode } from '../api/types'
 import type { RootState } from '../store/index'
 import shuffle from '../utils/shuffle'
@@ -31,18 +32,13 @@ const Episodes: React.FC<IPropsEpisodes> = ({ episodes }) => {
   return (
     <div style={{ marginTop: '3em' }}>
       <h2>A list of some episodes</h2>
-      <form autoComplete="off">
-        <label htmlFor="episodeTitle">
-          <input
-            type="text"
-            id="episodeTitle"
-            placeholder="Search episode name"
-            onChange={(event) => {
-              setInputText(event.currentTarget.value)
-            }}
-          />
-        </label>
-      </form>
+      <InputSearch
+        inputId="episodeTitle"
+        inputPlaceholder="Search episode name"
+        onChange={(event) => {
+          setInputText(event.currentTarget.value)
+        }}
+      />
       {episodesToShow.map(
         ({
           episode_id: episodeId,

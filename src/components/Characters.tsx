@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import InputSearch from './parts/InputSearch'
 import type { ICharacter } from '../api/types'
 import type { RootState } from '../store/index'
 import shuffle from '../utils/shuffle'
@@ -31,18 +32,13 @@ const Characters: React.FC<IPropsCharacters> = ({ characters }) => {
   return (
     <div>
       <h2>A list of some random characters</h2>
-      <form autoComplete="off">
-        <label htmlFor="characterName">
-          <input
-            type="text"
-            id="characterName"
-            placeholder="Search character name"
-            onChange={(event) => {
-              setInputText(event.currentTarget.value)
-            }}
-          />
-        </label>
-      </form>
+      <InputSearch
+        inputId="characterName"
+        inputPlaceholder="Search character name"
+        onChange={(event) => {
+          setInputText(event.currentTarget.value)
+        }}
+      />
       <ul
         style={{
           display: 'flex',
