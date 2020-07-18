@@ -12,7 +12,7 @@ export interface ICharacter {
   better_call_saul_appearance: number[]
 }
 
-export interface IEpisodes {
+export interface IEpisode {
   episode_id: number
   title: string
   season: string
@@ -22,13 +22,13 @@ export interface IEpisodes {
   series: string
 }
 
-export interface IQuotes {
+export interface IQuote {
   quote_id: number
   quote: string
   author: string
   series: string
 }
 
-export interface IDeaths {
+export interface IDeath {
   deathCount: number
 }

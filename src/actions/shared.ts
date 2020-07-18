@@ -1,14 +1,14 @@
 import type { Dispatch, Action } from 'redux'
-import type { ICharacter, IEpisodes, IQuotes, IDeaths } from '../api/types'
+import type { ICharacter, IEpisode, IQuote, IDeath } from '../api/types'
 import breakingBadAPI from '../api/breakingBadAPI'
 
 export const RECEIVE_DATA = 'RECEIVE_DATA'
 
 export interface IAllFetchedData {
   characters: ICharacter[]
-  episodes: IEpisodes[]
-  quotes: IQuotes[]
-  deaths: IDeaths[]
+  episodes: IEpisode[]
+  quotes: IQuote[]
+  deaths: IDeath[]
 }
 
 export interface IACReceiveData {

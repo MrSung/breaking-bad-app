@@ -32,10 +32,10 @@ const Characters: React.FC<IPropsCharacters> = ({ characters }) => {
     <div>
       <h2>A list of some random characters</h2>
       <form autoComplete="off">
-        <label htmlFor="charName">
+        <label htmlFor="characterName">
           <input
             type="text"
-            id="charName"
+            id="characterName"
             placeholder="Search character name"
             onChange={(event) => {
               setInputText(event.currentTarget.value)

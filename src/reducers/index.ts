@@ -5,6 +5,7 @@ import {
   IACReceiveData,
 } from '../actions/shared'
 import { filteredCharacters } from './characters'
+import { filteredEpisodes } from './episodes'
 
 export function allFetchedData(
   state = { characters: [], episodes: [], quotes: [], deaths: [] },
@@ -18,6 +19,10 @@ export function allFetchedData(
   }
 }
 
-const rootReducer = combineReducers({ allFetchedData, filteredCharacters })
+const rootReducer = combineReducers({
+  allFetchedData,
+  filteredCharacters,
+  filteredEpisodes,
+})
 
 export default rootReducer

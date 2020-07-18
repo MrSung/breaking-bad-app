@@ -1,19 +1,48 @@
-import React, { useMemo } from 'react'
-import type { IEpisodes } from '../api/types'
+import React, { useState, useMemo, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import type { IEpisode } from '../api/types'
+import type { RootState } from '../store/index'
 import shuffle from '../utils/shuffle'
+import { handleFilterEpisodes } from '../actions/episodes'
 
 interface IPropsEpisodes {
-  episodes: IEpisodes[]
+  episodes: IEpisode[]
 }
 
 const Episodes: React.FC<IPropsEpisodes> = ({ episodes }) => {
-  const episodesToShow = useMemo(() => shuffle(episodes).slice(0, 3), [
-    episodes,
-  ])
+  const [inputText, setInputText] = useState<undefined | string>('')
+  const dispatch = useDispatch()
+  const filteredEpisodes = useSelector(
+    (state: RootState) => state.filteredEpisodes,
+  )
+  const shuffledAndPickedEpisodes = useMemo(
+    () => shuffle(episodes).slice(0, 3),
+    [episodes],
+  )
+  const episodesToShow = useMemo(() => {
+    return inputText === '' ? shuffledAndPickedEpisodes : filteredEpisodes
+  }, [inputText, shuffledAndPickedEpisodes, filteredEpisodes])
+
+  useEffect(() => {
+    if (typeof inputText === 'undefined' || inputText === '') return
+    dispatch(handleFilterEpisodes(episodes, inputText))
+  }, [episodes, inputText, dispatch])
 
   return (
     <div style={{ marginTop: '3em' }}>
       <h2>A list of some episodes</h2>
+      <form autoComplete="off">
+        <label htmlFor="episodeTitle">
+          <input
+            type="text"
+            id="episodeTitle"
+            placeholder="Search episode name"
+            onChange={(event) => {
+              setInputText(event.currentTarget.value)
+            }}
+          />
+        </label>
+      </form>
       {episodesToShow.map(
         ({
           episode_id: episodeId,

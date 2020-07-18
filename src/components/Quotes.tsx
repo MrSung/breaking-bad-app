@@ -1,9 +1,9 @@
 import React, { useMemo } from 'react'
-import type { IQuotes } from '../api/types'
+import type { IQuote } from '../api/types'
 import shuffle from '../utils/shuffle'
 
 interface IPropsQuotes {
-  quotes: IQuotes[]
+  quotes: IQuote[]
 }
 
 const Quotes: React.FC<IPropsQuotes> = ({ quotes }) => {
