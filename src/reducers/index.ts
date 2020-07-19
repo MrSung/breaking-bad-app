@@ -6,6 +6,7 @@ import {
 } from '../actions/shared'
 import { filteredCharacters } from './characters'
 import { filteredEpisodes } from './episodes'
+import { filteredQuotes } from './quotes'
 
 export function allFetchedData(
   state = { characters: [], episodes: [], quotes: [], deaths: [] },
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
   allFetchedData,
   filteredCharacters,
   filteredEpisodes,
+  filteredQuotes,
 })
 
 export default rootReducer
