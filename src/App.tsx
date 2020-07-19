@@ -5,6 +5,7 @@ import { handleInitialData } from './actions/shared'
 import Characters from './components/Characters'
 import Episodes from './components/Episodes'
 import Quotes from './components/Quotes'
+import Deaths from './components/Deaths'
 
 const App: React.FC = () => {
   const dispatch = useDispatch()
@@ -21,6 +22,7 @@ const App: React.FC = () => {
       <Characters characters={characters} />
       <Episodes episodes={episodes} />
       <Quotes quotes={quotes} />
+      <Deaths />
     </div>
   )
 }

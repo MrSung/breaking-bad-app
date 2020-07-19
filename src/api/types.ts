@@ -30,5 +30,6 @@ export interface IQuote {
 }
 
 export interface IDeath {
+  name?: string
   deathCount: number
 }
