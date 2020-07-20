@@ -9,6 +9,7 @@ import Deaths from './components/Deaths'
 
 const App: React.FC = () => {
   const dispatch = useDispatch()
+  const isLoading = useSelector((state: RootState) => state.isLoading)
   const { characters, episodes, quotes } = useSelector(
     (state: RootState) => state.allFetchedData,
   )
@@ -19,10 +20,18 @@ const App: React.FC = () => {
 
   return (
     <div style={{ padding: '2em 0 5em' }}>
-      <Characters characters={characters} />
-      <Episodes episodes={episodes} />
-      <Quotes quotes={quotes} />
-      <Deaths />
+      <h1>Breaking Bad App</h1>
+      {(() => {
+        if (isLoading) return <h2>Now loading...</h2>
+        return (
+          <>
+            <Characters characters={characters} />
+            <Episodes episodes={episodes} />
+            <Quotes quotes={quotes} />
+            <Deaths />
+          </>
+        )
+      })()}
     </div>
   )
 }

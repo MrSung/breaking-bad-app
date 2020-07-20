@@ -4,6 +4,7 @@ import {
   IACReceiveData,
   IAllFetchedData,
 } from '../actions/shared'
+import { isLoading } from './loading'
 import { filteredCharacters } from './characters'
 import { filteredEpisodes } from './episodes'
 import { filteredQuotes } from './quotes'
@@ -22,6 +23,7 @@ export function allFetchedData(
 }
 
 const rootReducer = combineReducers({
+  isLoading,
   allFetchedData,
   filteredCharacters,
   filteredEpisodes,
