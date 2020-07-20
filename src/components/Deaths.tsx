@@ -28,25 +28,28 @@ const Deaths: React.FC = () => {
           setInputText(event.currentTarget.value)
         }}
       />
-      {deathsToShow?.map(({ name, deathCount }) => (
-        <section
-          key={name}
-          style={{ marginTop: '1.5em', borderBottom: '1px dotted white' }}
-        >
-          <table>
-            <tbody>
-              <tr>
-                <td style={{ width: '120px' }}>name</td>
-                <td>{name}</td>
-              </tr>
-              <tr>
-                <td style={{ width: '120px' }}>deathCount</td>
-                <td>{deathCount}</td>
-              </tr>
-            </tbody>
-          </table>
-        </section>
-      ))}
+      {
+        // @ts-expect-error
+        deathsToShow?.map(({ name, deathCount }) => (
+          <section
+            key={name}
+            style={{ marginTop: '1.5em', borderBottom: '1px dotted white' }}
+          >
+            <table>
+              <tbody>
+                <tr>
+                  <td style={{ width: '120px' }}>name</td>
+                  <td>{name}</td>
+                </tr>
+                <tr>
+                  <td style={{ width: '120px' }}>deathCount</td>
+                  <td>{deathCount}</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+        ))
+      }
     </div>
   )
 }
