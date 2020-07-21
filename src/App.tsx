@@ -20,9 +20,10 @@ const App: React.FC = () => {
 
   return (
     <div style={{ padding: '2em 0 5em' }}>
-      <h1>Breaking Bad App</h1>
+      <h1 data-testid="headingOne">Breaking Bad App</h1>
       {(() => {
-        if (isLoading) return <h2>Now loading...</h2>
+        if (isLoading)
+          return <h2 data-testid="headingNowLoading">Now loading...</h2>
         return (
           <>
             <Characters characters={characters} />

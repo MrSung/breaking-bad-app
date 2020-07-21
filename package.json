@@ -4,6 +4,7 @@
     "build": "snowpack build",
     "clean": "rm -rf ./node_modules/.cache build",
     "test": "jest",
+    "test:watch": "jest --watch",
     "eslint": "eslint --ext .js --ignore-path .gitignore .",
     "eslint:fix": "eslint --fix --ext .js --ignore-path .gitignore .",
     "tsc": "tsc"
