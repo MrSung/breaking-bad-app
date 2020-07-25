@@ -28,7 +28,7 @@ const Quotes: React.FC<IPropsQuotes> = ({ quotes }) => {
 
   return (
     <div style={{ marginTop: '3em' }}>
-      <h2>A list of some quotes</h2>
+      <h2>A list of some random quotes</h2>
       <InputSearch
         inputId="quoteContent"
         inputPlaceholder="Search quote"

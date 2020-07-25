@@ -31,7 +31,7 @@ const Episodes: React.FC<IPropsEpisodes> = ({ episodes }) => {
 
   return (
     <div style={{ marginTop: '3em' }}>
-      <h2>A list of some episodes</h2>
+      <h2>A list of some random episodes</h2>
       <InputSearch
         inputId="episodeTitle"
         inputPlaceholder="Search episode name"
