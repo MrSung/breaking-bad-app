@@ -44,53 +44,57 @@ const Quotes: React.FC<IPropsQuotes> = ({ quotes }) => {
           setInputText(event.currentTarget.value)
         }}
       />
-      {quotesToShow.map((quoteSingle) => {
-        const { quote_id: quoteId, quote, author, series } = quoteSingle
-        const containsMatchedQuote = registeredQuotes.some(
-          (q) => q.quote_id === quoteId,
-        )
-        return (
-          <section
-            key={quoteId}
-            style={{ marginTop: '1.5em', borderBottom: '1px dotted white' }}
-          >
-            <table>
-              <tbody>
-                <tr>
-                  <td>quote</td>
-                  <td style={{ width: '660px' }}>{quote}</td>
-                </tr>
-                <tr>
-                  <td>author</td>
-                  <td style={{ width: '640px' }}>{author}</td>
-                </tr>
-                <tr>
-                  <td>series</td>
-                  <td style={{ width: '640px' }}>{series}</td>
-                </tr>
-              </tbody>
-            </table>
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'center',
-                paddingBottom: '0.3em',
-              }}
+      {quotesToShow.length === 0 && (
+        <div style={{ margin: 0 }}>No results matched.</div>
+      )}
+      {quotesToShow.length !== 0 &&
+        quotesToShow.map((quoteSingle) => {
+          const { quote_id: quoteId, quote, author, series } = quoteSingle
+          const containsMatchedQuote = registeredQuotes.some(
+            (q) => q.quote_id === quoteId,
+          )
+          return (
+            <section
+              key={quoteId}
+              style={{ marginTop: '1.5em', borderBottom: '1px dotted white' }}
             >
-              <ButtonToggle
-                onClick={() => {
-                  if (!containsMatchedQuote) {
-                    dispatch(handleAddQuote(quoteSingle))
-                    return
-                  }
-                  dispatch(handleRemoveQuote(quoteSingle))
+              <table>
+                <tbody>
+                  <tr>
+                    <td>quote</td>
+                    <td style={{ width: '660px' }}>{quote}</td>
+                  </tr>
+                  <tr>
+                    <td>author</td>
+                    <td style={{ width: '640px' }}>{author}</td>
+                  </tr>
+                  <tr>
+                    <td>series</td>
+                    <td style={{ width: '640px' }}>{series}</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  paddingBottom: '0.3em',
                 }}
-                added={containsMatchedQuote}
-              />
-            </div>
-          </section>
-        )
-      })}
+              >
+                <ButtonToggle
+                  onClick={() => {
+                    if (!containsMatchedQuote) {
+                      dispatch(handleAddQuote(quoteSingle))
+                      return
+                    }
+                    dispatch(handleRemoveQuote(quoteSingle))
+                  }}
+                  added={containsMatchedQuote}
+                />
+              </div>
+            </section>
+          )
+        })}
     </div>
   )
 }

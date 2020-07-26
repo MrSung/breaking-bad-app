@@ -47,73 +47,77 @@ const Episodes: React.FC<IPropsEpisodes> = ({ episodes }) => {
           setInputText(event.currentTarget.value)
         }}
       />
-      {episodesToShow.map((episodeSingle) => {
-        const {
-          episode_id: episodeId,
-          title,
-          season,
-          air_date: airDate,
-          characters,
-          episode,
-          series,
-        } = episodeSingle
-        const containsMatchedEpisode = registeredEpisodes.some(
-          (ep) => ep.episode_id === episodeId,
-        )
-        return (
-          <section
-            key={episodeId}
-            style={{ marginTop: '1.5em', borderBottom: '1px dotted white' }}
-          >
-            <table>
-              <tbody>
-                <tr>
-                  <td style={{ minWidth: '120px' }}>title</td>
-                  <td>{title}</td>
-                </tr>
-                <tr>
-                  <td style={{ minWidth: '120px' }}>season</td>
-                  <td>{season}</td>
-                </tr>
-                <tr>
-                  <td style={{ minWidth: '120px' }}>airDate</td>
-                  <td>{airDate}</td>
-                </tr>
-                <tr>
-                  <td style={{ minWidth: '120px' }}>characters</td>
-                  <td>{characters.join(', ')}</td>
-                </tr>
-                <tr>
-                  <td style={{ minWidth: '120px' }}>episode</td>
-                  <td>{episode}</td>
-                </tr>
-                <tr>
-                  <td style={{ minWidth: '120px' }}>series</td>
-                  <td>{series}</td>
-                </tr>
-              </tbody>
-            </table>
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'center',
-                paddingBottom: '0.3em',
-              }}
+      {episodesToShow.length === 0 && (
+        <div style={{ margin: 0 }}>No results matched.</div>
+      )}
+      {episodesToShow.length !== 0 &&
+        episodesToShow.map((episodeSingle) => {
+          const {
+            episode_id: episodeId,
+            title,
+            season,
+            air_date: airDate,
+            characters,
+            episode,
+            series,
+          } = episodeSingle
+          const containsMatchedEpisode = registeredEpisodes.some(
+            (ep) => ep.episode_id === episodeId,
+          )
+          return (
+            <section
+              key={episodeId}
+              style={{ marginTop: '1.5em', borderBottom: '1px dotted white' }}
             >
-              <ButtonToggle
-                onClick={() => {
-                  if (!containsMatchedEpisode) {
-                    dispatch(handleAddEpisode(episodeSingle))
-                    return
-                  }
-                  dispatch(handleRemoveEpisode(episodeSingle))
+              <table>
+                <tbody>
+                  <tr>
+                    <td style={{ minWidth: '120px' }}>title</td>
+                    <td>{title}</td>
+                  </tr>
+                  <tr>
+                    <td style={{ minWidth: '120px' }}>season</td>
+                    <td>{season}</td>
+                  </tr>
+                  <tr>
+                    <td style={{ minWidth: '120px' }}>airDate</td>
+                    <td>{airDate}</td>
+                  </tr>
+                  <tr>
+                    <td style={{ minWidth: '120px' }}>characters</td>
+                    <td>{characters.join(', ')}</td>
+                  </tr>
+                  <tr>
+                    <td style={{ minWidth: '120px' }}>episode</td>
+                    <td>{episode}</td>
+                  </tr>
+                  <tr>
+                    <td style={{ minWidth: '120px' }}>series</td>
+                    <td>{series}</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  paddingBottom: '0.3em',
                 }}
-                added={containsMatchedEpisode}
-              />
-            </div>
-          </section>
-        )
-      })}
+              >
+                <ButtonToggle
+                  onClick={() => {
+                    if (!containsMatchedEpisode) {
+                      dispatch(handleAddEpisode(episodeSingle))
+                      return
+                    }
+                    dispatch(handleRemoveEpisode(episodeSingle))
+                  }}
+                  added={containsMatchedEpisode}
+                />
+              </div>
+            </section>
+          )
+        })}
     </div>
   )
 }
