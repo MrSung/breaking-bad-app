@@ -1,10 +1,15 @@
 import React, { useState, useMemo, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import InputSearch from './parts/InputSearch'
+import ButtonToggle from './parts/ButtonToggle'
 import type { IEpisode } from '../api/types'
 import type { RootState } from '../store/index'
 import shuffle from '../utils/shuffle'
-import { handleFilterEpisodes } from '../actions/episodes'
+import {
+  handleFilterEpisodes,
+  handleAddEpisode,
+  handleRemoveEpisode,
+} from '../actions/episodes'
 
 interface IPropsEpisodes {
   episodes: IEpisode[]
@@ -15,6 +20,9 @@ const Episodes: React.FC<IPropsEpisodes> = ({ episodes }) => {
   const dispatch = useDispatch()
   const filteredEpisodes = useSelector(
     (state: RootState) => state.filteredEpisodes,
+  )
+  const registeredEpisodes = useSelector(
+    (state: RootState) => state.registeredEpisodes,
   )
   const shuffledAndPickedEpisodes = useMemo(
     () => shuffle(episodes).slice(0, 3),
@@ -39,8 +47,8 @@ const Episodes: React.FC<IPropsEpisodes> = ({ episodes }) => {
           setInputText(event.currentTarget.value)
         }}
       />
-      {episodesToShow.map(
-        ({
+      {episodesToShow.map((episodeSingle) => {
+        const {
           episode_id: episodeId,
           title,
           season,
@@ -48,7 +56,11 @@ const Episodes: React.FC<IPropsEpisodes> = ({ episodes }) => {
           characters,
           episode,
           series,
-        }) => (
+        } = episodeSingle
+        const containsMatchedEpisode = registeredEpisodes.some(
+          (ep) => ep.episode_id === episodeId,
+        )
+        return (
           <section
             key={episodeId}
             style={{ marginTop: '1.5em', borderBottom: '1px dotted white' }}
@@ -81,9 +93,27 @@ const Episodes: React.FC<IPropsEpisodes> = ({ episodes }) => {
                 </tr>
               </tbody>
             </table>
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                paddingBottom: '0.3em',
+              }}
+            >
+              <ButtonToggle
+                onClick={() => {
+                  if (!containsMatchedEpisode) {
+                    dispatch(handleAddEpisode(episodeSingle))
+                    return
+                  }
+                  dispatch(handleRemoveEpisode(episodeSingle))
+                }}
+                added={containsMatchedEpisode}
+              />
+            </div>
           </section>
-        ),
-      )}
+        )
+      })}
     </div>
   )
 }

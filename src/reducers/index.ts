@@ -6,7 +6,7 @@ import {
 } from '../actions/shared'
 import { isLoading } from './loading'
 import { filteredCharacters, registeredCharacters } from './characters'
-import { filteredEpisodes } from './episodes'
+import { filteredEpisodes, registeredEpisodes } from './episodes'
 import { filteredQuotes } from './quotes'
 import { filteredDeaths } from './deaths'
 
@@ -30,6 +30,7 @@ const rootReducer = combineReducers({
   filteredQuotes,
   filteredDeaths,
   registeredCharacters,
+  registeredEpisodes,
 })
 
 export default rootReducer
