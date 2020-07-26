@@ -7,7 +7,7 @@ import {
 import { isLoading } from './loading'
 import { filteredCharacters, registeredCharacters } from './characters'
 import { filteredEpisodes, registeredEpisodes } from './episodes'
-import { filteredQuotes } from './quotes'
+import { filteredQuotes, registeredQuotes } from './quotes'
 import { filteredDeaths } from './deaths'
 
 export function allFetchedData(
@@ -31,6 +31,7 @@ const rootReducer = combineReducers({
   filteredDeaths,
   registeredCharacters,
   registeredEpisodes,
+  registeredQuotes,
 })
 
 export default rootReducer
