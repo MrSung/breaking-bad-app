@@ -1,10 +1,15 @@
 import React, { useState, useMemo, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import InputSearch from './parts/InputSearch'
+import ButtonToggle from './parts/ButtonToggle'
 import type { ICharacter } from '../api/types'
 import type { RootState } from '../store/index'
 import shuffle from '../utils/shuffle'
-import { handleFilterCharacters } from '../actions/characters'
+import {
+  handleFilterCharacters,
+  handleAddCharacter,
+  handleRemoveCharacter,
+} from '../actions/characters'
 
 interface IPropsCharacters {
   characters: ICharacter[]
@@ -15,6 +20,9 @@ const Characters: React.FC<IPropsCharacters> = ({ characters }) => {
   const dispatch = useDispatch()
   const filteredCharacters = useSelector(
     (state: RootState) => state.filteredCharacters,
+  )
+  const registeredCharacters = useSelector(
+    (state: RootState) => state.registeredCharacters,
   )
   const shuffledAndPickedCharacters = useMemo(
     () => shuffle(characters).slice(0, 3),
@@ -48,8 +56,8 @@ const Characters: React.FC<IPropsCharacters> = ({ characters }) => {
           padding: 0,
         }}
       >
-        {charactersToShow.map(
-          ({
+        {charactersToShow.map((character) => {
+          const {
             char_id: charId,
             img,
             name,
@@ -57,7 +65,11 @@ const Characters: React.FC<IPropsCharacters> = ({ characters }) => {
             occupation,
             appearance,
             status,
-          }) => (
+          } = character
+          const containsMatchedCharacter = registeredCharacters.some(
+            (c) => c.char_id === charId,
+          )
+          return (
             <li
               key={charId}
               style={{
@@ -91,9 +103,22 @@ const Characters: React.FC<IPropsCharacters> = ({ characters }) => {
                 <dt>Status</dt>
                 <dd>{status}</dd>
               </dl>
+              <hr />
+              <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <ButtonToggle
+                  onClick={() => {
+                    if (!containsMatchedCharacter) {
+                      dispatch(handleAddCharacter(character))
+                      return
+                    }
+                    dispatch(handleRemoveCharacter(character))
+                  }}
+                  added={containsMatchedCharacter}
+                />
+              </div>
             </li>
-          ),
-        )}
+          )
+        })}
       </ul>
     </div>
   )

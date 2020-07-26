@@ -9,7 +9,7 @@ import {
 } from '../actions/characters'
 
 export function filteredCharacters(
-  state = [],
+  state: ICharacter[] = [],
   action: IACFilterCharacters,
 ): ICharacter[] {
   switch (action.type) {
@@ -21,7 +21,7 @@ export function filteredCharacters(
 }
 
 export function registeredCharacters(
-  state: ICharacter[],
+  state: ICharacter[] = [],
   action: IACAddCharacter | IACRemoveCharacter,
 ): ICharacter[] {
   switch (action.type) {
