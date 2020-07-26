@@ -2,7 +2,7 @@ import type { IEpisode } from '../api/types'
 import { FILTER_EPISODES, IACFilterEpisodes } from '../actions/episodes'
 
 export function filteredEpisodes(
-  state = [],
+  state: IEpisode[] = [],
   action: IACFilterEpisodes,
 ): IEpisode[] {
   switch (action.type) {
