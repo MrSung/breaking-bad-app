@@ -1,4 +1,6 @@
 import { combineReducers } from 'redux'
+import { persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
 import {
   RECEIVE_DATA,
   IACReceiveData,
@@ -22,6 +24,11 @@ export function allFetchedData(
   }
 }
 
+const persistConfig = {
+  key: 'root',
+  storage,
+}
+
 const rootReducer = combineReducers({
   isLoading,
   allFetchedData,
@@ -34,4 +41,4 @@ const rootReducer = combineReducers({
   registeredQuotes,
 })
 
-export default rootReducer
+export default persistReducer(persistConfig, rootReducer)
