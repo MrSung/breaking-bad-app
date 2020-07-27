@@ -48,8 +48,8 @@ export function handleFilterQuotes(
 ) {
   return (dispatch: Dispatch<Action>) => {
     if (typeof searchText === 'undefined') return
-    const filteredQuotes = quotes.filter((quote: IQuote) => {
-      return quote.quote.toLowerCase().startsWith(searchText)
+    const filteredQuotes = quotes.filter(({ quote }: IQuote) => {
+      return quote.toLowerCase().startsWith(searchText)
     })
     dispatch(acFilterQuotes(filteredQuotes))
     if (typeof callback !== 'undefined') {

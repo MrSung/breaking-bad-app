@@ -50,8 +50,8 @@ export function handleFilterCharacters(
 ) {
   return (dispatch: Dispatch<Action>) => {
     if (typeof searchText === 'undefined') return
-    const filteredCharacters = characters.filter((character: ICharacter) => {
-      return character.name.toLowerCase().startsWith(searchText)
+    const filteredCharacters = characters.filter(({ name }: ICharacter) => {
+      return name.toLowerCase().startsWith(searchText)
     })
     dispatch(acFilterCharacters(filteredCharacters))
     if (typeof callback !== 'undefined') {

@@ -48,8 +48,8 @@ export function handleFilterEpisodes(
 ) {
   return (dispatch: Dispatch<Action>) => {
     if (typeof searchText === 'undefined') return
-    const filteredEpisodes = episodes.filter((episode: IEpisode) => {
-      return episode.title.toLowerCase().startsWith(searchText)
+    const filteredEpisodes = episodes.filter(({ title }: IEpisode) => {
+      return title.toLowerCase().startsWith(searchText)
     })
     dispatch(acFilterEpisodes(filteredEpisodes))
     if (typeof callback !== 'undefined') {
