@@ -1,8 +1,8 @@
 const API_BASE_URL = 'https://www.breakingbadapi.com/api'
 
-const fetchBreakingBadAPI = async (subUrl: string): Promise<any> => {
+const fetchBreakingBadAPI = async (path: string): Promise<any> => {
   try {
-    const response = await fetch(`${API_BASE_URL}/${subUrl}`)
+    const response = await fetch(`${API_BASE_URL}/${path}`)
     const result = await response.json()
     return result
   } catch (error) {

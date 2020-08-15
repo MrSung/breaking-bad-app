@@ -9,5 +9,3 @@ export const store = createStore(rootReducer, middleware)
 
 // @ts-expect-error
 export const persistor = persistStore(store)
-
-export default { store, persistStore }
