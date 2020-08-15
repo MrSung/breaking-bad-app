@@ -1,6 +1,6 @@
 import type { Dispatch, Action } from 'redux'
-import type { ICharacter, IEpisode, IQuote, IDeath } from '../api/types'
-import breakingBadAPI from '../api/breakingBadAPI'
+import type { ICharacter, IEpisode, IQuote, IDeath } from '../../api/types'
+import breakingBadAPI from '../../api/breakingBadAPI'
 
 export const SET_LOADING = 'SET_LOADING'
 export const RECEIVE_DATA = 'RECEIVE_DATA'

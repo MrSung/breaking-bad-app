@@ -1,8 +1,8 @@
 import React, { useState, useMemo, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import InputSearch from './parts/InputSearch'
-import type { RootState } from '../store/index'
-import { handleFilterDeaths } from '../actions/deaths'
+import type { RootState } from '../redux/store/index'
+import { handleFilterDeaths } from '../redux/actions/deaths'
 
 const Deaths: React.FC = () => {
   const [inputText, setInputText] = useState<undefined | string>('')

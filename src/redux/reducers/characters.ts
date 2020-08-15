@@ -1,4 +1,4 @@
-import type { ICharacter } from '../api/types'
+import type { ICharacter } from '../../api/types'
 import {
   FILTER_CHARACTERS,
   IACFilterCharacters,

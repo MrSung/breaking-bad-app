@@ -1,6 +1,6 @@
 import type { Dispatch, Action } from 'redux'
-import type { IDeath } from '../api/types'
-import breakingBadAPI from '../api/breakingBadAPI'
+import type { IDeath } from '../../api/types'
+import breakingBadAPI from '../../api/breakingBadAPI'
 
 export const FILTER_DEATHS = 'FILTER_DEATHS'
 

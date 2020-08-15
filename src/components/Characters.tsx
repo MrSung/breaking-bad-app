@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import InputSearch from './parts/InputSearch'
 import ButtonToggle from './parts/ButtonToggle'
 import type { ICharacter } from '../api/types'
-import type { RootState } from '../store/index'
+import type { RootState } from '../redux/store/index'
 import shuffle from '../utils/shuffle'
 import {
   handleFilterCharacters,
   handleAddCharacter,
   handleRemoveCharacter,
-} from '../actions/characters'
+} from '../redux/actions/characters'
 
 interface IPropsCharacters {
   characters: ICharacter[]

@@ -1,5 +1,5 @@
 import type { Dispatch, Action } from 'redux'
-import type { IQuote } from '../api/types'
+import type { IQuote } from '../../api/types'
 
 export const FILTER_QUOTES = 'FILTER_QUOTES'
 export const ADD_QUOTE = 'ADD_QUOTE'

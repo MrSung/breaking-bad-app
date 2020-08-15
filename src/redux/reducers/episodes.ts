@@ -1,4 +1,4 @@
-import type { IEpisode } from '../api/types'
+import type { IEpisode } from '../../api/types'
 import {
   FILTER_EPISODES,
   IACFilterEpisodes,

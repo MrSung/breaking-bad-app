@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import InputSearch from './parts/InputSearch'
 import ButtonToggle from './parts/ButtonToggle'
 import type { IQuote } from '../api/types'
-import type { RootState } from '../store/index'
+import type { RootState } from '../redux/store/index'
 import shuffle from '../utils/shuffle'
 import {
   handleFilterQuotes,
   handleAddQuote,
   handleRemoveQuote,
-} from '../actions/quotes'
+} from '../redux/actions/quotes'
 
 interface IPropsQuotes {
   quotes: IQuote[]

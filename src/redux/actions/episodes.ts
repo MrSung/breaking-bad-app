@@ -1,5 +1,5 @@
 import type { Dispatch, Action } from 'redux'
-import type { IEpisode } from '../api/types'
+import type { IEpisode } from '../../api/types'
 
 export const FILTER_EPISODES = 'FILTER_EPISODES'
 export const ADD_EPISODE = 'ADD_EPISODE'

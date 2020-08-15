@@ -1,4 +1,4 @@
-import type { IDeath } from '../api/types'
+import type { IDeath } from '../../api/types'
 import { FILTER_DEATHS, IACFilterDeaths } from '../actions/deaths'
 
 export function filteredDeaths(

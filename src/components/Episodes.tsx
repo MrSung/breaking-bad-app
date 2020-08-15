@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import InputSearch from './parts/InputSearch'
 import ButtonToggle from './parts/ButtonToggle'
 import type { IEpisode } from '../api/types'
-import type { RootState } from '../store/index'
+import type { RootState } from '../redux/store/index'
 import shuffle from '../utils/shuffle'
 import {
   handleFilterEpisodes,
   handleAddEpisode,
   handleRemoveEpisode,
-} from '../actions/episodes'
+} from '../redux/actions/episodes'
 
 interface IPropsEpisodes {
   episodes: IEpisode[]

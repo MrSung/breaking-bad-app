@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import { Provider } from 'react-redux'
-import { store } from './store/index'
+import { store } from './redux/store/index'
 
 const AllTheProviders: React.FC<{ children: React.ReactNode }> = ({
   children,

@@ -1,4 +1,4 @@
-import type { IQuote } from '../api/types'
+import type { IQuote } from '../../api/types'
 import {
   FILTER_QUOTES,
   IACFilterQuotes,

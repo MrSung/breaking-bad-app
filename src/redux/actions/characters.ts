@@ -1,5 +1,5 @@
 import type { Dispatch, Action } from 'redux'
-import type { ICharacter } from '../api/types'
+import type { ICharacter } from '../../api/types'
 
 export const FILTER_CHARACTERS = 'FILTER_CHARACTERS'
 export const ADD_CHARACTER = 'ADD_CHARACTER'
