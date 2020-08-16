@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import type { RootState } from '../redux/store'
-import { handleInitialData } from '../redux/actions/shared'
+import { fetchInitialData } from '../redux/actions/shared'
 import Characters from '../components/Characters'
 import Episodes from '../components/Episodes'
 import Quotes from '../components/Quotes'
-// import Deaths from './components/Deaths'
 
 const Homepage: React.FC = () => {
   const dispatch = useDispatch()
@@ -15,7 +14,7 @@ const Homepage: React.FC = () => {
   )
 
   useEffect(() => {
-    dispatch(handleInitialData())
+    dispatch(fetchInitialData())
   }, [dispatch])
 
   return (
@@ -28,7 +27,6 @@ const Homepage: React.FC = () => {
             <Characters characters={characters} />
             <Episodes episodes={episodes} />
             <Quotes quotes={quotes} />
-            {/* <Deaths /> */}
           </>
         )
       })()}

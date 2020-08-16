@@ -1,11 +1,19 @@
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
 import { persistStore } from 'redux-persist'
+import logger from 'redux-logger'
+import createSagaMiddleware from 'redux-saga'
+import sagas from '../sagas'
 import rootReducer from '../reducers'
-import middleware from '../middleware'
 
 export type RootState = ReturnType<typeof rootReducer>
 
-export const store = createStore(rootReducer, middleware)
+const initializeSagaMiddleware = createSagaMiddleware()
 
-// @ts-expect-error
+initializeSagaMiddleware.run(sagas)
+
+export const store = createStore(
+  rootReducer,
+  applyMiddleware(logger, initializeSagaMiddleware),
+)
+
 export const persistor = persistStore(store)
